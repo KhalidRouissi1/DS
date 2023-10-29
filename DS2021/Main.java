@@ -10,9 +10,9 @@ public class Main {
         Jilani.setNbrDePlace(45);
         Jilani.setNbrEtudiant(17);
         jTrash.ajoutFilm(Jilani);
+        jTrash.listeFilmsJCC();    
         float totalSalesOussama = oussama.totalVenteBillets();
         float totalSalesJilani = Jilani.totalVenteBillets();
-        System.out.println("Total Sales for Oussama's Film: " + totalSalesOussama);
-        System.out.println("Total Sales for Jilani's Film: " + totalSalesJilani);
+        System.out.println("Total Sales for jTrash: " + jTrash.totalVenteBilletsJCC());
     }
 }
