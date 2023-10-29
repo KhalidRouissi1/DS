@@ -2,7 +2,7 @@ package DS2021;
 public class Main {
     public static void main(String args[]) {
         Jcc jTrash = new Jcc(3, 2023);
-        Film oussama = new Film("Le dernier refuge", "Ousman", "Mali", 30);
+        Film oussama = new Documentaire("Le dernier refuge", "Ousman", "Mali", 30,"La guerre civile");
         oussama.setNbrDePlace(30);
         oussama.setNbrEtudiant(9);
         jTrash.ajoutFilm(oussama);
