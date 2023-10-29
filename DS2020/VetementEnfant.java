@@ -20,7 +20,9 @@ public class VetementEnfant extends Vetement {
     @Override
     public float prixTTC(int remise) {
         float montant = 0;
-        if (remise < super.prixHT * 0.5) {
+       // if (remise < super.prixHT * 0.5) {
+
+        if (remise < super.prixHT) 
             montant = super.prixTTC(remise);
         }
         else{
