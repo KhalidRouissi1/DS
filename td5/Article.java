@@ -33,4 +33,8 @@ abstract class Article {
     public boolean estDispo(int qteAchat) {
         return qteStock >= qteAchat;
     }
+
+    public String getLibelle() {
+        return libelle;
+    }
 }

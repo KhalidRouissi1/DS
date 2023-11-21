@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Achat {
     static Article[] supermarche = new Article[4];
 
@@ -7,21 +9,35 @@ public class Achat {
         supermarche[1] = new ProduitElec(145, "TV Led 80cm", 1450.000f, 0, "TV");
         supermarche[2] = new Vetement(178, "Pantalon noir taille M", 42.000f, 5, "Noir", "M");
         supermarche[3] = new ProduitGC(191, "Pâtes", 0.410f, 18);
-
-        // Process the purchase operation
-        float totalAmount = 0.0f;
-        for (Article article : supermarche) {
-            if (article.estDispo(1)) {
-                System.out.println("\n disponible :");
-                article.decrire();
-                float prixTTC = article.calculPrixTTC();
-                System.out.println("Prix TTC à payer : " + prixTTC);
-                totalAmount += prixTTC;
+        Scanner s = new Scanner(System.in);
+        for (int i = 0; i < 4; i++) {
+            System.out.println("donner le stock a achete : ");
+            int a = s.nextInt();
+            if (supermarche[i].estDispo(a)) {
+                System.out.println("Stock dispo");
             } else {
-                System.out.println("\n indisponible :");
-                article.decrire();
-                article.approvisionner(1);
-                System.out.println(" approvisionné.");
+                System.out.println("Stock non dispo");
+                supermarche[i].approvisionner(10);
+            }
+        }
+        float totalAmount = 0.0f;
+        for (int i = 0; i < 4; i++) {
+            if (supermarche[i] instanceof ProduitGC) {
+                supermarche[i].decrire();
+                System.out.println("\n le prix de " + supermarche[i].getLibelle() + " = " + supermarche[i].calculPrixTTC());
+                System.out.println("\n ***********************************************");
+                totalAmount += supermarche[i].calculPrixTTC();
+            } else if (supermarche[i] instanceof Vetement) {
+                supermarche[i].decrire();
+                System.out.println("\n le prix de " + supermarche[i].getLibelle() + " = " + ((Vetement) supermarche[i]).prixDeVente("21/03/2023"));
+                System.out.println("\n ***********************************************");
+                totalAmount += ((Vetement) supermarche[i]).prixDeVente("21/03/2023");
+            } else {
+                supermarche[i].decrire();
+                System.out.println("\n le prix de " + supermarche[i].getLibelle() + " = " + ((ProduitElec) supermarche[i]).prixDeVente("21/03/2023"));
+                System.out.println("\n ***********************************************");
+                totalAmount += ((ProduitElec) supermarche[i]).prixDeVente("21/03/2023");
+
             }
         }
         System.out.println("\nMontant total: " + totalAmount);
